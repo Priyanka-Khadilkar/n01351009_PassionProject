@@ -1,0 +1,111 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+.navbar-inverse .navbar-brand {
+    color: white !important;
+}
+
+.body-content {
+    margin-top: 30px;
+}
+
+.top {
+    margin-top: 10px;
+}
+
+.marginright45 {
+    margin-right: 17px;
+}
+
+.overflow-checkbox {
+    border: 1px solid #ccc !important;
+    height: 110px;
+    overflow-y: scroll;
+    width: 300px;
+    padding-left: 7px;
+}
+
+.public-heading {
+    font-family: cursive;
+    font-size: large;
+    color: gray;
+}
+
+.form-border {
+    border: 1px solid #ccc !important;
+    padding: 19px;
+    border-radius: 15px;
+}
+
+.grid-border {
+    border: 1px solid #BC2318 !important;
+    padding: 5px;
+    border-radius: 15px;
+    margin-top: 34px;
+}
+
+.custom-btn {
+    background-color: #BC2318 !important;
+    color: white !important;
+}
+
+.btn-admin {
+    float: right;
+    margin-top: 10px;
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+
+.description-outerdiv {
+    background-color: #80808021;
+    padding: 10px;
+}
+
+.block {
+    margin-bottom: 21px;
+    display: block;
+    width: 44%;
+    height: 150px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 28px;
+    font-size: 26px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.header-color {
+    color: white !important;
+}
+
+.deleteicon {
+    color: white;
+    float: right;
+}

@@ -1,0 +1,73 @@
+﻿@model Find_A_Restaurant.Models.ViewModel.FindRestaurant
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <p class="public-heading">Toronto has a dynamic and diverse culinary scene. Internationally-acclaimed chefs head restaurants like the three-storey Momofuku (a favourite among visiting celebrities), while high-in-the-sky eateries like 360 Restaurant at the CN Tower pair mouthwatering meals with unparalleled views.</p>
+    <form class="form-inline form-border" method="post" action="/Restaurant/Find">
+        <div class="form-group marginright45">
+            <input type="text" class="form-control" placeholder="Enter Search Keyword" name="SearchText" id="SearchText">
+        </div>
+        <div class="form-group marginright45 overflow-checkbox">
+            @{
+                foreach (var cuisine in Model.cuisines)
+                {
+                    <div>
+                        <input type="checkbox"
+                               name="SelectedCuisines"
+                               value="@cuisine.CuisineID" />
+                        @cuisine.CuisineName
+                    </div>
+                }
+            }
+        </div>
+        <div class="form-group marginright45">
+            <select id="Regions" class="form-control" name="Regions">
+                <option value="">All Region</option>
+                @{
+                    foreach (var region in Model.regions)
+                    {
+                        <option value="@region.RegionID">
+                            @region.RegionName
+                        </option>
+                    }
+                }
+            </select>
+        </div>
+        <input type="submit" value="Search" class="btn btn-default custom-btn" />
+    </form>
+    @if (Model.restaurants.Count > 0)
+    {
+        <div class="grid-border">
+            @if (Model.restaurants.Count > 0)
+            {
+
+                foreach (var restaurant in Model.restaurants)
+                {
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2>@restaurant.RestaurantName</h2>
+                            <div>
+                                <label>Region:</label>
+                                <span>@restaurant.Region.RegionName</span>
+                            </div>
+                            <div>
+                                <label>Address:</label>
+                                <span>@restaurant.RestaurantStreetAddress, @restaurant.RestaurantPostalCode</span>
+                            </div>
+                            <div>
+                                <label>Cuisine:</label>
+                                <span>@String.Join(",", restaurant.Cuisines.Select(x => x.CuisineName).ToArray())</span>
+                            </div>
+                            <div class="description-outerdiv"><div style="width:400px">@restaurant.RestaurantAbout.Trim()</div></div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>
+
+
+
+

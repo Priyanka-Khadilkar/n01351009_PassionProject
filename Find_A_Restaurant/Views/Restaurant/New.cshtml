@@ -1,0 +1,78 @@
+﻿@model Find_A_Restaurant.Models.ViewModel.NewRestaurant
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="panel panel-primary top">
+    <div class="panel-heading header-color">
+        Add  Restaurant
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" method="post" action="/Restaurant/New">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Name">Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Name" placeholder="Enter name" name="Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="StreetAddress">Street Address:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="StreetAddress" placeholder="Enter name" name="StreetAddress">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="PostalCode">Postal Code:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="PostalCode" placeholder="Enter name" name="PostalCode">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="StreetAddress">Cuisine:</label>
+                <div class="col-sm-10">
+                    <div class="overflow-checkbox">
+
+                        @{
+                            foreach (var cuisine in Model.cuisines)
+                            {
+                                <div>
+                                    <input type="checkbox"
+                                           name="SelectedCuisines"
+                                           value="@cuisine.CuisineID" />
+                                    @cuisine.CuisineName
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Regions">Region:</label>
+                <div class="col-sm-10">
+                    <select id="Regions" class="form-control" name="Regions">
+                        <option value="">Select Region</option>
+                        @{
+                            foreach (var region in Model.regions)
+                            {
+                                <option value="@region.RegionID">
+                                    @region.RegionName
+                                </option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="About">About:</label>
+                <div class="col-sm-10">
+                    <textarea id="About" class="form-control" name="About"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" id="BtnSubmit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<a href="/Restaurant/List" class="btn btn-primary headtop" >Back to list</a>

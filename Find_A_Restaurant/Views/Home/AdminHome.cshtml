@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div>
+    <button type="button" class="block" onclick="location.href='@Url.Action("List", "Restaurant")'">Restaurants</button>
+</div>
+<div>
+    <button type="button" class="block" onclick="location.href='@Url.Action("List", "Cuisine")'">Cuisines</button>
+</div>
+<div>
+    <button type="button" class="block" onclick="location.href='@Url.Action("List", "Region")'">Regions</button>
+</div>
+
