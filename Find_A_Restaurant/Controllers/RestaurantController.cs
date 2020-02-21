@@ -13,6 +13,9 @@ namespace Find_A_Restaurant.Controllers
 {
     public class RestaurantController : Controller
     {
+        //Learned EF6 queries with the microsoft tutorial.
+        //https://docs.microsoft.com/en-us/ef/ef6/get-started
+
         //Db context
         private FindRestaurantsContext db = new FindRestaurantsContext();
         public ActionResult New()

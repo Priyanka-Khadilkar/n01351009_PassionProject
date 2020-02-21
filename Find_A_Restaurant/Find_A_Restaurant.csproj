@@ -168,6 +168,15 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ERDiagram\ERDiagram.docx" />
+    <Content Include="Wireframes\Add Cuisine.png" />
+    <Content Include="Wireframes\AddRegion.png" />
+    <Content Include="Wireframes\AddRestaurant.png" />
+    <Content Include="Wireframes\List_Restaurant.png" />
+    <Content Include="Wireframes\Search Restaurant.png" />
+    <Content Include="Wireframes\Update Cuisine.png" />
+    <Content Include="Wireframes\UpdateRegion.png" />
+    <Content Include="Wireframes\UpdateRestaurant.png" />
+    <Content Include="Wireframes\ViewRestaurant.png" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -211,7 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Wireframes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
