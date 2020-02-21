@@ -1,0 +1,25 @@
+﻿@model Find_A_Restaurant.Models.Region
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="panel panel-primary top">
+    <div class="panel-heading header-color">
+        @Model.RegionName
+        <a href="/Region/Delete/@Model.RegionID" class="deleteicon" title="Click to Delete"><span class="glyphicon glyphicon-trash"></span></a>
+        <a href="/Region/Update/@Model.RegionID" class="deleteicon marginright45" title="Click to Update"><span class="glyphicon glyphicon-pencil"></span></a>
+    </div>
+    <div class="panel-body">
+        <h3>Restaurants in  @Model.RegionName :</h3>
+        <div class="list-group">
+            @{
+                foreach (var restaurant in Model.RestaurantRegions)
+                {
+                    <a href="/Restaurant/Show/@restaurant.RestaurantID" class="list-group-item lstgp" style="width: 50% !important; color: firebrick !important;">@restaurant.RestaurantName</a>
+                }
+            }
+        </div>
+    </div>
+</div>
+<a href="/Region/List" class="btn btn-primary headtop">Back to list</a>
+
+

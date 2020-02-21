@@ -7,6 +7,7 @@ namespace Find_A_Restaurant.Models
 {
     public class User
     {
+        //Planning for login system in future
         public int UserID { get; set; }
         public int UserFirstName { get; set; }
         public int UserLastName { get; set; }

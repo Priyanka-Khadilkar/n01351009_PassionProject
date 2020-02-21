@@ -4,6 +4,7 @@ using Find_A_Restaurant.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -48,11 +49,9 @@ namespace Find_A_Restaurant.Controllers
             Region selectedRegion = db.Regions.Where(x => x.RegionID == Regions).First();
             selectedRegion.RestaurantRegions = new List<Restaurant>();
             Restaurant.Region = selectedRegion;
-
             Restaurant.RestaurantAbout = About;
 
             //Get all Selected Cuisines and insert into database
-            //string[] SelectedCuisineIds = SelectedCuisines.Split(',');
             List<Cuisine> ListCuisines = new List<Cuisine>();
             foreach (string CuisineId in SelectedCuisines)
             {
@@ -61,6 +60,9 @@ namespace Find_A_Restaurant.Controllers
                 Cuisine.RestaurantCuisines = new List<Restaurant>();
                 ListCuisines.Add(Cuisine);
             }
+
+            Debug.WriteLine("Restaurants to add name : " + Name);
+            Debug.WriteLine("Restaurants to add in region Id : " + Regions);
 
             //Assign all the Cuisines to the Restaurant Object
             Restaurant.Cuisines = ListCuisines;
@@ -92,6 +94,8 @@ namespace Find_A_Restaurant.Controllers
 
             //Select the restaurant 
             Restaurant Restaurant = db.Restaurants.SingleOrDefault(x => x.RestaurantID == id);
+
+            Debug.WriteLine("Restaurants id to update  : " + id);
 
             //Assign cuisines and regions to the UpdateRestaurant view model
             UpdateRestaurant ViewModel = new UpdateRestaurant();
@@ -128,6 +132,9 @@ namespace Find_A_Restaurant.Controllers
 
             //Clear the old list of cuisines from the object
             Restaurant.Cuisines.Clear();
+
+            Debug.WriteLine("Restaurants id to update  : " + id);
+            Debug.WriteLine("Restaurants id to update  : " + SelectedCuisines);
 
             //Get all Selected Cuisines and update into database
             List<Cuisine> ListCuisines = new List<Cuisine>();
@@ -257,6 +264,7 @@ namespace Find_A_Restaurant.Controllers
 
             if (SearchText != "")
             {
+                Debug.WriteLine("Search text to search into List  : " + SearchText);
                 //Query for Search by keyword
                 SearchedRestaurants = SearchedRestaurants.Where(x => x.Region.RegionName.ToLower().Contains(SearchText.ToLower()) || x.RestaurantName.ToLower().Contains(SearchText.ToLower()) || x.RestaurantPostalCode.ToLower().Contains(SearchText.ToLower())
                 || x.RestaurantStreetAddress.ToLower().Contains(SearchText.ToLower()) || x.RestaurantAbout.ToLower().Contains(SearchText.ToLower()) || x.Cuisines.Any(r => r.CuisineName.ToLower().Contains(SearchText.ToLower()))).ToList();
@@ -264,12 +272,14 @@ namespace Find_A_Restaurant.Controllers
 
             if (SelectedCuisines != null)
             {
+                Debug.WriteLine("Cuisines to search  : " + SelectedCuisines);
                 //Query for Search by Cuisines
                 SearchedRestaurants = SearchedRestaurants.Where(u => u.Cuisines.Any(r => SelectedCuisines.Contains(r.CuisineID.ToString()))).ToList();
             }
 
             if (Regions > 0)
             {
+                Debug.WriteLine("Region to search  : " + SelectedCuisines);
                 //Query for Search by region
                 SearchedRestaurants = SearchedRestaurants.Where(x => x.RegionID == Regions).ToList();
             }
@@ -282,7 +292,7 @@ namespace Find_A_Restaurant.Controllers
 
         public ActionResult Show(int id)
         {
-
+            Debug.WriteLine("Restaurant to Show  : " + id);
             //Select Restaurant according to id
             Restaurant Restaurant = db.Restaurants.Include("Cuisines").Include("Region").Where(x => x.RestaurantID == id).SingleOrDefault();
 
@@ -294,6 +304,7 @@ namespace Find_A_Restaurant.Controllers
             //I was trying to do with EF6 LINQ query, i was facing some errors to delete so I did it with following apporach 
             //TODO - With EF6 query
             //Delete attached all cuisines to the restaurant
+            Debug.WriteLine("Restaurant to Delete  : " + id);
             string CuisineDeleteQuery = "delete from RestaurantCuisines where Restaurant_RestaurantID = @id";
             SqlParameter CuisineDeleteParam = new SqlParameter("@id", id);
             db.Database.ExecuteSqlCommand(CuisineDeleteQuery, CuisineDeleteParam);
@@ -302,7 +313,6 @@ namespace Find_A_Restaurant.Controllers
             string DeleteRestaurant = "delete from Restaurants where RestaurantID = @id";
             SqlParameter DeleteRestaurantParam = new SqlParameter("@id", id);
             db.Database.ExecuteSqlCommand(DeleteRestaurant, DeleteRestaurantParam);
-
             return RedirectToAction("List");
         }
 

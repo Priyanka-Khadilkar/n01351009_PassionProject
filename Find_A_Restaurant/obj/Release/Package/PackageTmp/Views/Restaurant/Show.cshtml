@@ -1,0 +1,46 @@
+﻿@model Find_A_Restaurant.Models.Restaurant
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="panel panel-primary top">
+    <div class="panel-heading header-color">
+        @Model.RestaurantName
+        <a href="/Restaurant/Delete/@Model.RestaurantID" class="deleteicon" title="Click to Delete"><span class="glyphicon glyphicon-trash"></span></a>
+        <a href="/Restaurant/Update/@Model.RestaurantID" class="deleteicon marginright45" title="Click to Update"><span class="glyphicon glyphicon-pencil"></span></a>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="StreetAddress">Street Address:</label>
+                <div class="col-sm-10">@Model.RestaurantStreetAddress</div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="PostalCode">Postal Code:</label>
+                <div class="col-sm-10">
+                    @Model.RestaurantPostalCode
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="StreetAddress">Cuisine:</label>
+                <div class="col-sm-10">
+                    @String.Join(",", Model.Cuisines.Select(x => x.CuisineName).ToArray())
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Regions">Region:</label>
+                <div class="col-sm-10">
+                    @Model.Region.RegionName
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="About">About:</label>
+                <div class="col-sm-10">
+                    @Model.RestaurantAbout
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<a href="/Restaurant/List" class="btn btn-primary headtop">Back to list</a>
+
+
